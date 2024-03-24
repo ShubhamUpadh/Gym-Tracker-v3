@@ -43,6 +43,22 @@ class set_details(models.Model):
 
     def __str__(self):
         return self.date_workout_id.exercise_id.exercise_name + " | " + self.weight + " | " + self.repitition
+
+class custom_exercise(models.Model):
+    
+    class ExerciseType(models.TextChoices):
+        ISOLATION = 'isolation', _('ISOLATION EXERCISE')
+        COMPOUND = 'compound', _('COMPOUND EXERCISE')
+
+    id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(users, on_delete=models.CASCADE, related_name = 'user_id')
+    exercise_name = models.CharField(max_length= 50)
+    major_muscle = models.CharField(max_length=20)
+    exercise_type = models.CharField(max_length = 10, choices = ExerciseType.choices)
+
+    def __str__(self):
+        return f"{self.user_id.username} | {self.exercise_name} | {self.major_muscle}"
+
     
 
 
