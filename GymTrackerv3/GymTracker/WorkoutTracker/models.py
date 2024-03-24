@@ -31,7 +31,7 @@ class date_workout(models.Model):
     workout_date = models.DateField()
 
     def __str__(self):
-        return self.exercise_id + " | " + self.user_id + " | " + self.workout_date
+        return self.exercise_id.exercise_name + " | " + self.user_id.username + " | " + self.workout_date
 
 class set_details(models.Model):
     id = models.AutoField(primary_key=True)
@@ -42,7 +42,7 @@ class set_details(models.Model):
     remarks = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.date_workout_id + " | " + self.weight + " | " + self.repitition
+        return self.date_workout_id.exercise_id.exercise_name + " | " + self.weight + " | " + self.repitition
     
 
 
